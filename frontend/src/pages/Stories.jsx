@@ -9,7 +9,13 @@ import SectionSpacer from "../components/stories/SectionSpacer";
 
 export default function Stories() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-slate-50 to-sky-100 overflow-hidden font-sans">
+    <div
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden font-sans relative"
+      style={{ backgroundImage: "url('/cloud.jpg')" }}
+    >
+      {/* Soft textured overlay to reduce harsh white contrast */}
+      <div className="absolute inset-0 bg-sky-50/90 backdrop-blur-[2px] pointer-events-none" />
+      
       <StoriesHeader />
       
       <div className="relative">

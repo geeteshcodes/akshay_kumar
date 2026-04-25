@@ -7,7 +7,7 @@ export default function Newsletter() {
       id="newsletter"
       aria-label="Newsletter signup"
     >
-      <div className="rounded-[32px] bg-gradient-to-br from-slate-900 via-slate-900 to-sky-900/40 border border-slate-700 shadow-[0_32px_80px_-40px_rgba(15,23,42,0.9)] px-6 md:px-16 py-16 lg:py-24 relative overflow-hidden">
+      <div className="rounded-[32px] bg-gradient-to-br from-slate-900 via-slate-900 to-sky-900/40 border border-slate-700 shadow-[0_32px_80px_-40px_rgba(15,23,42,0.9)] px-6 md:px-10 py-12 lg:py-16 relative overflow-hidden">
         {/* Subtle accent glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 blur-[100px] rounded-full pointer-events-none" />
 
@@ -50,7 +50,7 @@ export default function Newsletter() {
         </div>
 
         {/* Footer sits inside the dark container for a unified block, just like Landing.jsx */}
-        <div className="mt-24 border-t border-slate-800 pt-8">
+        <div className="mt-12 border-t border-slate-800 pt-8">
           <Footer />
         </div>
       </div>
