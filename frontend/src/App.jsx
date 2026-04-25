@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 // Sirf Landing aur Auth eager load hogi (pehli screen)
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
-import Explore from "./pages/ExploreStandalone";
+import Explore from "./pages/Explore";
 
 // Baaki sab lazy load hongi
 const Quiz = lazy(() => import("./pages/Quiz"));
