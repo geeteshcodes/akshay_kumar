@@ -553,23 +553,13 @@ export default function ExplorePage() {
                 </div>
 
                 {/* PLACES GRID */}
-                <div className="grid grid-cols-3 gap-6">
-                  {posts.concat(posts).map((place, i) => (
-                    <motion.div
-                      key={i}
-                      whileHover={{ y: -8 }}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                  {filteredPlaces.map((place) => (
+                    <div
+                      key={place.id}
                       onClick={() => setSelectedPlace(place)}
-                      className="group relative bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition-all hover:shadow-xl cursor-pointer"
+                      className="group relative bg-white rounded-[32px] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 cursor-pointer"
                     >
-                      <div className="relative h-48 overflow-hidden">
-                        <img src={place.image} alt={place.location} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                        <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-wider">
-                          {place.location}
-                        </div>
-                        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white cursor-pointer hover:bg-white/40 transition-colors">
-                          <Heart size={14} />
-                        </div>
-                      </div>
                       <div className="p-5">
                         <div className="flex items-center gap-2 mb-2">
                           <div className="flex gap-0.5">

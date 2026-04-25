@@ -450,7 +450,7 @@ export default function TravStoryExplore() {
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f0eff0", minHeight: "100vh", color: "#1a1a1a" }}>
       {/* PAGE */}
-      <div style={{ display: "flex", gap: 20, padding: 24, minHeight: "calc(100vh - 58px)", alignItems: "flex-start" }}>
+      <div style={{ display: "flex", gap: 32, padding: "32px 5%", minHeight: "calc(100vh - 58px)", alignItems: "flex-start", maxWidth: "1800px", margin: "0 auto" }}>
         {/* SIDEBAR */}
         <aside style={{ background: "#fff", borderRadius: 16, padding: "24px 20px", width: 240, flexShrink: 0, display: "flex", flexDirection: "column", gap: 20, height: "fit-content" }}>
           <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -637,7 +637,7 @@ export default function TravStoryExplore() {
           ) : filtered.length === 0 ? (
             <div style={{ textAlign: "center", padding: 40, color: "#aaa", fontSize: 14 }}>No places match your search.</div>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
               {filtered.map(place => (
                 <PlaceCard
                   key={place.id}

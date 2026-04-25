@@ -9,7 +9,7 @@ import Dropdown from "../components/common/Dropdown";
 
 const MainLayout = () => {
   const location = useLocation();
-  const isFullWidthPage = location.pathname === "/chat" || location.pathname.startsWith("/planner") || location.pathname === "/profile" || location.pathname === "/bookings";
+  const isFullWidthPage = location.pathname === "/chat" || location.pathname.startsWith("/planner") || location.pathname === "/profile" || location.pathname === "/bookings" || location.pathname === "/explore";
   const { user, logout } = useUser();
 
   return (
