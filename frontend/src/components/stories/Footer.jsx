@@ -1,50 +1,46 @@
 import { Link } from "react-router-dom";
 
-const footerLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Press", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-  { label: "Contact", href: "#" },
-];
-
 export default function Footer() {
   return (
-    <footer className="bg-surface w-full border-t border-on-surface/10" aria-label="Site footer">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 py-16">
-          <div className="flex flex-col gap-3">
-            <Link
-              to="/"
-              className="font-headline font-bold text-lg text-on-surface hover:opacity-80 transition-opacity"
-              id="footer-logo"
-            >
-              TravStory
-            </Link>
-            <p className="font-body text-sm text-on-surface/60 max-w-xs leading-relaxed">
-              Elevating travel through cinematic narrative and architectural
-              design.
-            </p>
-          </div>
-
-          <nav className="flex flex-wrap gap-8 md:gap-10">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className="font-body text-sm text-on-surface/60 hover:text-brand transition-colors whitespace-nowrap"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div className="border-t border-on-surface/10 py-8">
-          <p className="font-body text-sm text-on-surface/40 text-center md:text-left">
-            © {new Date().getFullYear()} Editorial Voyager. All rights reserved.
+    <footer aria-label="Site footer">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div className="flex flex-col gap-2">
+          <Link
+            to="/"
+            className="text-2xl font-black text-white tracking-tight hover:text-sky-400 transition-colors"
+            id="footer-logo"
+          >
+            TravStory
+          </Link>
+          <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
+            Elevating travel through cinematic narrative and architectural
+            design.
           </p>
         </div>
+
+        <div className="flex flex-wrap gap-x-8 gap-y-4">
+          <div className="space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">Links</p>
+            <div className="flex gap-4 text-sm text-slate-300">
+              <Link to="#" className="hover:text-white transition-colors">About</Link>
+              <Link to="#" className="hover:text-white transition-colors">Press</Link>
+              <Link to="#" className="hover:text-white transition-colors">Contact</Link>
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">Legal</p>
+            <div className="flex gap-4 text-sm text-slate-300">
+              <Link to="#" className="hover:text-white transition-colors">Privacy</Link>
+              <Link to="#" className="hover:text-white transition-colors">Terms</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <p>© {new Date().getFullYear()} TravStory. All rights reserved.</p>
+        <p>Built from Bengaluru · Lisbon · Seoul · wherever Wi-Fi holds.</p>
       </div>
     </footer>
   );

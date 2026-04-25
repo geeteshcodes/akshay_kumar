@@ -8,13 +8,7 @@ import SectionSpacer from "../components/stories/SectionSpacer";
 
 export default function Stories() {
   return (
-    <div
-      className="relative min-h-screen bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden"
-      style={{ backgroundImage: "url('/cloud.jpg')" }}
-    >
-      {/* Soft white overlay for readability */}
-      <div className="absolute inset-0 bg-white/50 pointer-events-none" />
-
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-slate-50 to-sky-100 overflow-hidden font-sans">
       <div className="relative">
         <ParallaxHero />
 
@@ -22,23 +16,13 @@ export default function Stories() {
           <MoodGrid />
           <SectionSpacer />
 
-          <div className="h-24 lg:h-40" />
-
           <FeaturedNarrative />
           <SectionSpacer />
-
-          <div className="h-24 lg:h-40" />
 
           <TravelReels />
           <SectionSpacer />
 
-          <div className="h-24 lg:h-40" />
-
           <Newsletter />
-          <SectionSpacer />
-
-          <div className="h-24 lg:h-40" />
-
           <Footer />
         </div>
       </div>

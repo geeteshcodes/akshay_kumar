@@ -1,44 +1,57 @@
+import Footer from "./Footer";
+
 export default function Newsletter() {
   return (
     <section
-      className="bg-surface/40 backdrop-blur-sm py-24 lg:py-32 px-6 lg:px-12"
+      className="py-24 px-6 lg:px-12 max-w-[1440px] mx-auto"
       id="newsletter"
       aria-label="Newsletter signup"
     >
-      <div className="flex justify-center">
-        <div className="max-w-lg text-center">
-        <span className="font-label text-brand font-bold tracking-[0.2em] text-sm uppercase mb-20 block">
-          Join the Voyage
-        </span>
-        <h2 className="font-headline text-5xl lg:text-6xl font-black text-on-surface mb-20 tracking-tighter leading-tight">
-          Weekly Dispatch
-        </h2>
-        <p className="font-body text-lg lg:text-xl text-on-surface-variant mb-24 text-center leading-relaxed">
-          Curated stories, early destination access, and the art of slowing
-          down. Delivered every Sunday morning.
-        </p>
-        <form
-          className="flex flex-col md:flex-row gap-6 justify-center"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <input
-            className="md:w-64 bg-surface-container-lowest border border-on-surface/10 px-6 py-4 rounded-lg font-body focus:ring-2 focus:ring-brand focus:outline-none placeholder:text-on-surface/40 transition-all"
-            placeholder="Enter your email address"
-            type="email"
-            id="newsletter-email"
-            aria-label="Email address for newsletter"
-          />
-          <button
-            className="w-full md:w-auto bg-on-surface text-surface px-10 py-4 rounded-lg font-label font-bold transition-all hover:bg-brand hover:text-white cursor-pointer"
-            type="submit"
-            id="newsletter-submit"
-          >
-            Subscribe
-          </button>
-        </form>
-        <p className="mt-20 text-sm font-body text-on-surface-variant opacity-60 text-center leading-relaxed">
-          We value your privacy. Unsubscribe at any time.
-        </p>
+      <div className="rounded-[32px] bg-gradient-to-br from-slate-900 via-slate-900 to-sky-900/40 border border-slate-700 shadow-[0_32px_80px_-40px_rgba(15,23,42,0.9)] px-6 md:px-16 py-16 lg:py-24 relative overflow-hidden">
+        {/* Subtle accent glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="flex flex-col items-center text-center relative z-10">
+          <div className="max-w-2xl">
+            <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-sky-400 mb-6 block">
+              STAY IN THE LOOP
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tight mb-6">
+              Be first in line for new vibes.
+            </h2>
+            <p className="text-base lg:text-lg text-slate-300 mb-10 leading-relaxed font-medium">
+              Get early access to exclusive narratives, launch drops, and the art of slowing
+              down. No spam, just travel brain candy delivered every Sunday morning.
+            </p>
+            
+            <form
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input
+                className="w-full sm:w-[320px] rounded-full bg-slate-800 border border-slate-600 px-6 py-4 text-base text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-300 transition-all shadow-inner"
+                placeholder="you@travelszn.com"
+                type="email"
+                id="newsletter-email"
+                aria-label="Email address for newsletter"
+              />
+              <button
+                className="px-8 py-4 rounded-full bg-sky-600 hover:bg-sky-500 text-base font-bold text-white shadow-lg shadow-sky-500/30 transition-colors shrink-0"
+                type="submit"
+                id="newsletter-submit"
+              >
+                Count me in
+              </button>
+            </form>
+            <p className="mt-8 text-xs text-slate-500 text-center">
+              We value your privacy. Unsubscribe at any time.
+            </p>
+          </div>
+        </div>
+
+        {/* Footer sits inside the dark container for a unified block, just like Landing.jsx */}
+        <div className="mt-24 border-t border-slate-800 pt-8">
+          <Footer />
         </div>
       </div>
     </section>

@@ -33,10 +33,10 @@ export default function MoodGrid() {
       aria-label="Discover by Mood"
     >
       <div className="flex flex-col gap-2 mb-12">
-        <span className="font-label text-brand font-bold tracking-widest text-sm uppercase">
-          Curated Exploration
+        <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-sky-500">
+          CURATED EXPLORATION
         </span>
-        <h2 className="font-headline text-4xl lg:text-5xl font-black text-on-surface">
+        <h2 className="mt-2 text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
           Discover by Mood
         </h2>
       </div>
@@ -45,7 +45,7 @@ export default function MoodGrid() {
         {moodCards.map((card) => (
           <div
             key={card.title}
-            className="group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.02]"
+            className="group relative aspect-[4/5] bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.02]"
             id={`mood-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
           >
             <img
@@ -53,12 +53,13 @@ export default function MoodGrid() {
               alt={card.alt}
               src={card.src}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+            {/* Soft gradient from white base */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6 lg:p-8">
-              <h3 className="font-headline text-xl lg:text-2xl font-bold text-white">
+              <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
                 {card.title}
               </h3>
-              <p className="text-white/80 font-body mt-2 text-sm lg:text-base">
+              <p className="text-white/90 font-medium mt-2 text-sm">
                 {card.description}
               </p>
             </div>
