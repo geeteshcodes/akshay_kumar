@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { fetchPhoto } from "../../utils/unsplash";
 
 const REELS = [
   {
@@ -8,7 +9,6 @@ const REELS = [
     city: "Kyoto",
     caption: "Kimono walks through centuries-old streets",
     videoUrl: "https://www.pexels.com/download/video/31385024/",
-    poster: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "vietnam",
@@ -16,7 +16,6 @@ const REELS = [
     city: "Vietnam",
     caption: "Emerald karsts of Ha Long Bay",
     videoUrl: "https://www.pexels.com/download/video/30391321/",
-    poster: "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "neom",
@@ -24,7 +23,6 @@ const REELS = [
     city: "Neom",
     caption: "Desert horizons & the city of tomorrow",
     videoUrl: "https://www.pexels.com/download/video/19348567/",
-    poster: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "basilicata",
@@ -32,7 +30,6 @@ const REELS = [
     city: "Basilicata",
     caption: "Cave-cut Matera at twilight",
     videoUrl: "https://www.pexels.com/download/video/27562816/",
-    poster: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -40,6 +37,11 @@ function ReelCard({ reel }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [posterUrl, setPosterUrl] = useState(null);
+
+  useEffect(() => {
+    fetchPhoto(reel.city + " travel").then(setPosterUrl);
+  }, [reel.city]);
 
   const handleMouseEnter = () => {
     if (!videoRef.current) return;
@@ -62,7 +64,7 @@ function ReelCard({ reel }) {
     >
       <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-slate-900">
         <img
-          src={reel.poster}
+          src={posterUrl}
           alt={`${reel.city}, ${reel.country}`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
           loading="lazy"
@@ -71,7 +73,7 @@ function ReelCard({ reel }) {
           <video
             ref={videoRef}
             src={reel.videoUrl}
-            poster={reel.poster}
+            poster={posterUrl}
             muted={false} // We manage volume softly via JS if needed, or keep unmuted on hover
             loop
             playsInline

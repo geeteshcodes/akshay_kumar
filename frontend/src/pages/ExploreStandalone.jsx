@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { fetchPhoto } from "../utils/unsplash";
 import ParallaxHero from "../components/stories/ParallaxHero";
 import MoodGrid from "../components/stories/MoodGrid";
 import FeaturedNarrative from "../components/stories/FeaturedNarrative";
@@ -214,12 +215,29 @@ const StarRating = ({ rating }) => {
 };
 
 // ─── CARD SCENE ──────────────────────────────────────────────────────────────
-const CardScene = ({ gradient, height = 150 }) => (
+const CardScene = ({ gradient, height = 150, query, title }) => (
   <div style={{ background: gradient, width: "100%", height, position: "relative", overflow: "hidden" }}>
-    <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 16, height: "100%", background: "#252525" }} />
-    <div style={{ position: "absolute", bottom: "14%", left: "50%", transform: "translateX(-50%)", width: 2, height: "26%", background: "#e8c830" }} />
+    <UnsplashImage query={query || title} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0, zIndex: 1 }} />
+    <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 16, height: "100%", background: "#252525", zIndex: 2 }} />
+    <div style={{ position: "absolute", bottom: "14%", left: "50%", transform: "translateX(-50%)", width: 2, height: "26%", background: "#e8c830", zIndex: 3 }} />
   </div>
 );
+
+// ─── UNSPLASH IMAGE ──────────────────────────────────────────────────────────
+const UnsplashImage = ({ query, alt, style }) => {
+  const [url, setUrl] = useState(null);
+  useEffect(() => {
+    if (query) {
+      fetchPhoto(query).then(u => {
+        console.log(`Unsplash [${query}]:`, u);
+        setUrl(u);
+      });
+    }
+  }, [query]);
+
+  if (!url) return null;
+  return <img src={url} alt={alt} style={{ ...style, objectFit: "cover" }} />;
+};
 
 // ─── PLACE CARD ───────────────────────────────────────────────────────────────
 const PlaceCard = ({ place, liked, onLike, onOpen }) => (
@@ -233,7 +251,7 @@ const PlaceCard = ({ place, liked, onLike, onOpen }) => (
     onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
   >
     <div style={{ position: "relative" }}>
-      <CardScene gradient={place.sceneGradient} />
+      <CardScene gradient={place.sceneGradient} query={place.city + " " + place.country} title={place.title} />
       <div style={{ position: "absolute", top: 10, left: 10, background: "rgba(255,255,255,0.88)", padding: "4px 10px", borderRadius: 20, fontSize: 10, fontWeight: 700, letterSpacing: "0.8px", color: "#1a1a1a" }}>
         {place.badge}
       </div>
@@ -541,11 +559,12 @@ export default function TravStoryExplore() {
                       style={{ 
                         width: 48, height: 48, borderRadius: 12, overflow: "hidden", 
                         border: "2.5px solid #fff", boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                        cursor: "pointer", transition: "transform 0.2s"
+                        cursor: "pointer", transition: "transform 0.2s", position: "relative"
                       }}
                       className="hover:scale-110"
                     >
                       <div style={{ background: p.sceneGradient, width: '100%', height: '100%' }} />
+                      <UnsplashImage query={p.city} alt={p.city} style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }} />
                     </div>
                     {i < DATA.places.length - 1 && (
                       <div style={{ width: 1, height: 16, borderLeft: "2px dotted #e0e0e0" }} />
@@ -561,6 +580,7 @@ export default function TravStoryExplore() {
                     <div className="w-full h-full rounded-[34px] overflow-hidden relative shadow-inner">
                       {/* Cinematic Background */}
                       <div style={{ background: place.sceneGradient, width: '100%', height: '100%' }} className="relative">
+                         <UnsplashImage query={place.city + " travel"} alt={place.city} style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }} />
                          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
                       </div>
                       

@@ -19,9 +19,14 @@ export const fetchPhoto = async (query) => {
       return null;
     }
     const data = await res.json();
-    return data.results?.[0]?.urls?.small || null;
+    if (!data.results || data.results.length === 0) {
+      console.warn(`Unsplash: No results for "${query}"`);
+      return null;
+    }
+    const url = data.results[0].urls.small;
+    return url;
   } catch (error) {
-    console.error("Unsplash fetch failed:", error.message);
+    console.error("Unsplash fetch failed for:", query, error);
     return null;
   }
 };
