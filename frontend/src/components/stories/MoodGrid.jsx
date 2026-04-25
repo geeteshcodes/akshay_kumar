@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+
 const moodCards = [
   {
     title: "Feeling Adventurous",
@@ -25,6 +28,24 @@ const moodCards = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+  },
+};
+
 export default function MoodGrid() {
   return (
     <section
@@ -32,20 +53,33 @@ export default function MoodGrid() {
       id="discover-mood"
       aria-label="Discover by Mood"
     >
-      <div className="flex flex-col gap-2 mb-12">
-        <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-sky-500">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-2 mb-12"
+      >
+        <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-sky-500 drop-shadow-sm">
           CURATED EXPLORATION
         </span>
         <h2 className="mt-2 text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
           Discover by Mood
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
+      >
         {moodCards.map((card) => (
-          <div
+          <motion.div
+            variants={cardVariants}
             key={card.title}
-            className="group relative aspect-[4/5] bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.02]"
+            className="group relative aspect-[4/5] bg-white border border-slate-200 rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl hover:shadow-sky-500/20"
             id={`mood-${card.title.toLowerCase().replace(/\s+/g, "-")}`}
           >
             <img
@@ -54,18 +88,26 @@ export default function MoodGrid() {
               src={card.src}
             />
             {/* Soft gradient from white base */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6 lg:p-8">
-              <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
+            
+            <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-end">
+              <h3 className="text-xl lg:text-2xl font-bold text-white tracking-tight transform transition-transform duration-500 group-hover:-translate-y-2">
                 {card.title}
               </h3>
-              <p className="text-white/90 font-medium mt-2 text-sm">
+              <p className="text-white/90 font-medium mt-2 text-sm transform transition-all duration-500 group-hover:-translate-y-2 group-hover:opacity-0">
                 {card.description}
               </p>
+
+              {/* Hover Pill Interaction */}
+              <div className="absolute bottom-6 left-6 lg:left-8 opacity-0 transform translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                <span className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 text-white text-xs font-bold uppercase tracking-wider">
+                  Explore <ArrowRight className="w-3 h-3" />
+                </span>
+              </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

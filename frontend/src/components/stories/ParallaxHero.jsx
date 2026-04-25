@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export default function ParallaxHero() {
   const { scrollY } = useScroll();
@@ -9,19 +10,23 @@ export default function ParallaxHero() {
   const textOpacity = useTransform(scrollY, [HIDE_START, HIDE_END], [1, 0]);
   const textVisibility = useTransform(scrollY, (value) => value > HIDE_END ? "hidden" : "visible");
 
+  const scrollToContent = () => {
+    document.getElementById("discover-mood")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <motion.div
         style={{ y: textY, opacity: textOpacity, visibility: textVisibility }}
         className="fixed inset-0 flex items-center justify-center z-30 pointer-events-none"
       >
-        <div className="text-center max-w-7xl px-6">
-          <div className="text-[11px] lg:text-xs font-bold tracking-[0.25em] uppercase text-sky-500 mb-4">
+        <div className="text-center max-w-7xl px-6 relative w-full h-full flex flex-col items-center justify-center">
+          <div className="text-[11px] lg:text-xs font-bold tracking-[0.25em] uppercase text-sky-500 mb-4 drop-shadow-sm">
             The New Standard
           </div>
 
           <div className="relative px-6 py-3 lg:px-16 lg:py-6 inline-block">
-            <div className="text-5xl sm:text-7xl lg:text-[12rem] leading-none tracking-tighter font-black text-slate-900">
+            <div className="text-5xl sm:text-7xl lg:text-[12rem] leading-none tracking-tighter font-black text-slate-900 drop-shadow-lg">
               TRAVSTORY
             </div>
           </div>
@@ -31,6 +36,15 @@ export default function ParallaxHero() {
               2026 EDITION
             </span>
           </div>
+
+          {/* Animated Scroll Down Button */}
+          <button
+            onClick={scrollToContent}
+            className="absolute bottom-12 pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-slate-200/50 hover:scale-110 hover:bg-white transition-all group"
+            aria-label="Scroll down"
+          >
+            <ChevronDown className="w-6 h-6 text-sky-600 animate-bounce group-hover:text-sky-500" />
+          </button>
         </div>
       </motion.div>
 
