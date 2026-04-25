@@ -5,11 +5,11 @@ import { lazy, Suspense } from "react";
 // Sirf Landing aur Auth eager load hogi (pehli screen)
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
+import Explore from "./pages/ExploreStandalone";
 
 // Baaki sab lazy load hongi
 const Quiz = lazy(() => import("./pages/Quiz"));
 const Home = lazy(() => import("./pages/Home"));
-const Explore = lazy(() => import("./pages/Explore"));
 const Chat = lazy(() => import("./pages/Chat"));
 const Planner = lazy(() => import("./pages/Planner"));
 const Profile = lazy(() => import("./pages/Profile"));

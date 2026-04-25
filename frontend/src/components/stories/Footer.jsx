@@ -7,10 +7,11 @@ export default function Footer() {
         <div className="flex flex-col gap-2">
           <Link
             to="/"
-            className="text-2xl font-black text-white tracking-tight hover:text-sky-400 transition-colors"
+            className="flex flex-col items-start leading-none group"
             id="footer-logo"
           >
-            TravStory
+            <span className="text-[9px] font-bold tracking-[0.3em] text-sky-500 mb-1 group-hover:text-sky-300 transition-colors">THE</span>
+            <span className="text-2xl font-black text-white tracking-tight group-hover:text-sky-400 transition-colors">TRAVSTORY</span>
           </Link>
           <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
             Elevating travel through cinematic narrative and architectural

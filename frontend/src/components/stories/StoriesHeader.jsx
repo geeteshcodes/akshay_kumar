@@ -13,16 +13,25 @@ export default function StoriesHeader() {
       <div className="absolute inset-0 bg-white/40 backdrop-blur-md border-b border-white/20 shadow-sm pointer-events-none" />
       
       <div className="relative z-10 w-full max-w-[1440px] mx-auto flex items-center justify-between">
-        <Link
-          to="/"
-          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 hover:bg-white border border-slate-200/50 shadow-sm text-sm font-bold text-slate-700 hover:text-slate-900 transition-all"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to App
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 hover:bg-white border border-slate-200/50 shadow-sm text-sm font-bold text-slate-700 hover:text-slate-900 transition-all"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to App
+          </Link>
+          <a
+            href="/index-explore.html"
+            className="px-4 py-2 rounded-full bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/20 text-sm font-bold text-sky-600 transition-all"
+          >
+            Explore
+          </a>
+        </div>
 
-        <div className="text-xl font-black text-slate-900 tracking-tighter">
-          TRAVSTORY
+        <div className="flex flex-col items-center leading-none">
+          <span className="text-[9px] font-bold tracking-[0.3em] text-sky-500 mb-0.5 ml-1">THE</span>
+          <span className="text-xl font-black text-slate-900 tracking-tighter">TRAVSTORY</span>
         </div>
 
         <div className="w-[120px] hidden md:block" /> {/* Spacer for centering */}
